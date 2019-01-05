@@ -1,0 +1,76 @@
+<mat-card class="example-card card">
+
+  <mat-card-header class="card-header">
+    <mat-card-title class="card-header__title">Авторизация</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="card-content">
+    <form class="card-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <mat-form-field class="card-form__data">
+        <input
+          type="email"
+          required
+          matInput
+          placeholder="Ваш email"
+          formControlName="email"
+          [errorStateMatcher]="matcher"
+        >
+        <mat-error *ngIf="hasError('email', 'true')">
+          Пароль не верный
+        </mat-error>
+
+        <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+          Введите корректный email
+        </mat-error>
+        <mat-error *ngIf="form.get('email').hasError('required')">
+          Email не может быть <strong>пустым</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="card-form__data">
+        <input
+          type="password"
+          required
+          matInput
+          placeholder="Ваш пароль"
+          formControlName="password"
+        >
+        <mat-error *ngIf="form.get('password').hasError('minlength') && !form.get('password').hasError('required')">
+          Пароль должен быть больше
+          {{ form.get('password')['errors']['minlength']['requiredLength'] }}
+          символов.
+          Сейчас
+          {{ form.get('password')['errors']['minlength']['actualLength'] }}
+        </mat-error>
+        <mat-error *ngIf="form.get('password').hasError('required')">
+          Пароль не может быть <strong>пустым</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-card-actions class="card-actions">
+        <button
+          type="submit"
+          class="card-actions__button"
+          color="primary"
+          mat-raised-button
+          [disabled]="form.invalid"
+        >
+        Войти</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+
+
+  <div class="card-footer">
+    <p class="card-footer__text">Забыли пароль?
+      <a
+        mat-stroked-button
+        [routerLink]=" '/recovery' "
+        color="primary"
+        class="card-footer__link"
+      >Восстановить</a>
+    </p>
+  </div>
+
+</mat-card>
