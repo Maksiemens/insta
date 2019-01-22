@@ -1,0 +1,84 @@
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 0;
+  border-radius: 10px;
+}
+
+.header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 30px 15px 80px 15px;
+  background: linear-gradient(to top, rgba(7,70,130,0.89) 0%, rgba(25,133,224,0.89) 100%);
+
+  &__title {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 42px;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(#000, 0.1);
+  }
+
+  &__subtitle {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(#000, 0.1);
+  }
+}
+
+.content {
+  padding: 15px;
+  position: relative;
+  top: -65px;
+}
+
+.profile {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgba(#000, 0.1);
+  padding: 15px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+
+  &__image {
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__text {
+    margin-left: 15px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.social {
+
+  &__item {
+    margin-top: 15px;
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+    padding: 10px 0;
+    border-radius: 5px;
+    background-color: #007aff;
+    text-align: center;
+    color: #fff;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: translate(5px, 0);
+    }
+  }
+
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'insta-auth',
@@ -7,17 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  newUser = true;
-
-
-  constructor() { }
-
-  toggle() {
-    this.newUser = !this.newUser;
-  }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-
   }
 
 }

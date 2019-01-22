@@ -1,20 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { UsersService } from 'src/app/shared/services/users.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+
 import { User } from 'src/app/shared/models/user.model';
-import { ErrorStateMatcher } from '@angular/material';
-
-
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
+import { Message } from 'src/app/shared/models/message.model';
 
 
 @Component({
@@ -24,44 +16,68 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class LoginComponent implements OnInit {
-   
   form: FormGroup;
-  errorMessage: boolean;
-  matcher = new MyErrorStateMatcher();
+  message: Message;
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
   
   ngOnInit() {
-    this.errorMessage = true;
-    this.form = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
+    this.message = new Message('', 'danger');
+
+    this.route.queryParams.subscribe((params: Params) => {
+      if(params['nowCanLogin']) {
+        this._showMessage('Теперь Вы можете войти в систему', 'success');
+      }
     });
+
+    this.form = new FormGroup({
+      'email': new FormControl(null,
+        [
+          Validators.required,
+          Validators.email
+        ]
+      ),
+      'password': new FormControl(null,
+        [
+          Validators.required,
+          Validators.minLength(6),
+        ]
+      )
+    });
+  }
+
+  _showMessage(text: string, type: string = 'danger') {
+    this.message = new Message(text, type);
+    window.setTimeout(() => {
+      this.message.text = '';
+    }, 5000);    
   }
 
   onSubmit() {
-    console.log(this.form);
-
     const formData = this.form.value;
     this.usersService.getUserByEmail(formData.email).subscribe((user: User) => {
-      console.log(user);
 
       if(user) {
-
         if(user.password === formData.password) {
-          //logic
+          this.message.text = '';
+          window.localStorage.setItem('user', JSON.stringify(user));
+          this.authService.login();
+          this.router.navigate(['/profile']);
         }
         else {
-          console.log('Пароль не верный');
-          this.errorMessage = true;
+          this._showMessage('Пароль не верный');
         }
-
       }
       else {
-        console.log('Такого пользователя не существует');
+        this._showMessage('Такого пользователя не существует');
       }
 
     });
-
   }
+
 }

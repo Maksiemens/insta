@@ -1,24 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormGroup, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import {
-  FormControl,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-  FormBuilder,
-  FormGroup
-} from '@angular/forms';
+import { UsersService } from 'src/app/shared/services/users.service';
 
-import { ErrorStateMatcher } from '@angular/material/core';
+import { User } from 'src/app/shared/models/user.model';
 
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { Observable, Observer, of, timer,  } from 'rxjs';
+import { map, switchMap, debounceTime,  distinctUntilChanged, first, take   } from 'rxjs/operators';
+
 
 
 @Component({
@@ -28,37 +19,93 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class RegistrationComponent implements OnInit {
-
-  options: FormGroup;
-
-  checked = false;
-  indeterminate = false;
-  labelPosition = 'after';
-  disabled = false;
-
-  //
   form: FormGroup;
-  matcher = new MyErrorStateMatcher();
 
-  constructor(fb: FormBuilder) {
-   
-    this.options = fb.group({
-      hideRequired: false,
-      floatLabel: 'auto',
-    });
-  }
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      'userName': new FormControl(null, [Validators.required]),
-      'userEmail': new FormControl(null, [Validators.required, Validators.email]),
-      'userNamePage': new FormControl(null, [Validators.required]),
-      'userPassword': new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      'userAgree': new FormControl(false, [Validators.required, Validators.requiredTrue]),
+      'name': new FormControl(null,
+        [
+          Validators.required
+        ]
+      ),
+      'email': new FormControl(null,
+        [
+          Validators.required,
+          Validators.email
+        ],
+        this._forbiddenEmails.bind(this)
+      ),
+      'page': new FormControl(null,
+        [
+          Validators.required
+        ]
+      ),
+      'password': new FormControl(null,
+        [
+          Validators.required,
+          Validators.minLength(6)
+        ]
+      ),
+      'agree': new FormControl(false,
+        [
+          Validators.requiredTrue
+        ]
+      ),
     });
   }
 
   onSubmit() {
-    console.log(this.form);
+    const {email, password, name, page} = this.form.value;
+    const user = new User(email, password, name, page);
+
+    this.usersService.createNewUser(user).subscribe((user: User) => {
+      this.router.navigate(['/login'], {
+        queryParams: {
+          nowCanLogin: true
+        }
+      });
+    });
+  }
+
+  // _forbiddenEmails(control: FormControl): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this.usersService.getUserByEmail(control.value)
+  //       .subscribe((user: User) => {
+  //         if(user) {
+  //           resolve({forbiddenEmail: true});
+  //         }
+  //         else {
+  //           resolve(null);
+  //         }
+  //       })
+  //   });
+  // }
+
+  //https://angularfirebase.com/lessons/async-form-validation-in-firebase-enforce-uniqueness/
+
+  _forbiddenEmails(control: FormControl): Observable<ValidationErrors> {
+ 
+    return this.usersService.getUserByEmail(control.value)
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        take(1),
+        map((user: User) => user ? {forbiddenEmail: true} : null)
+      );
+
+    // return new Observable(observer => {
+    //   const a =  this.usersService.getUserByEmail(control.value);
+    //   if( control.value === a ) {
+    //     observer.next({forbiddenEmail: true});
+    //   } else {
+    //     observer.next(null);
+    //   }
+    // });
   }
 }
+

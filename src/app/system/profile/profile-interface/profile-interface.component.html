@@ -1,0 +1,53 @@
+<div class="profile">
+
+  <div class="head">
+    <a class="head__link" mat-flat-button color="warn" [routerLink]="['/profile']" >Отмена</a>   
+    <h2 class="head__title">Профиль</h2>
+    <button class="head__button" type="button" mat-flat-button color="accent">Сохранить</button>
+  </div>
+
+  <form class="form example-form">
+    <mat-form-field class="form__group">
+      <input
+        matInput
+        placeholder="Приветствие"
+        value="Добро пожаловать"
+      >
+    </mat-form-field>
+  
+    <mat-form-field class="form__group">
+      <textarea
+        matInput
+        placeholder="Описание"
+        value="Выберите удобный для вас способ связи!"
+      >
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form__group">
+      <input
+        matInput
+        placeholder="Полное имя"
+        value="Ваше имя"
+      >
+    </mat-form-field>
+
+    <mat-form-field class="form__group">
+      <input
+        matInput
+        placeholder="Категория"
+        value="Пример: Консультант / дизайнер"
+      >
+    </mat-form-field>
+
+    <mat-form-field class="form__group">
+      <input
+        matInput
+        placeholder="Ссылка"
+        value="Ваша ссылка"
+      >
+    </mat-form-field>
+
+  </form>
+
+</div>

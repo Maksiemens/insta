@@ -1,20 +1,19 @@
 <mat-toolbar color="primary">
 
   <mat-toolbar-row>
-    <span>Insta App</span>
+    <a [routerLink]=" '/' " class="logo">Insta App</a>
+
     <span class="example-spacer"></span>
 
     <a 
       mat-raised-button
-      (click)="toggle()"
-      *ngIf="newUser"
+      *ngIf="router.url === '/login' || router.url === '/recovery'" 
       [routerLink]=" '/registration' "
     >Зарегистрироваться</a>
 
     <a
       mat-raised-button
-      (click)="toggle()"
-      *ngIf="!newUser"
+      *ngIf="router.url === '/registration'"
       [routerLink]=" '/login' "
     >Войти</a>
   </mat-toolbar-row>
