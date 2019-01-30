@@ -8,6 +8,11 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: '/login',
   },
+  {
+    path: 'settings',
+    pathMatch: 'full',
+    redirectTo: '/settings/account',
+  },
 ];
 
 

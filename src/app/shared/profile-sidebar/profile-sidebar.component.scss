@@ -1,0 +1,11 @@
+@import 'src/styles/mixins';
+
+.basic-settings,
+.additional-settings {
+  margin-top: 25px;
+
+  &__title {
+    padding: 0 33px;
+    @include font-primary(16px, #000, 500);
+  }
+}

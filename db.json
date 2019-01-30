@@ -1,10 +1,54 @@
 {
   "users": [
     {
-      "email": "maks@mail.ru",
-      "password": "123123",
-      "name": "Maks",
-      "page": "makskondratenko",
+      "profile": {
+        "interface": {
+          "greeting": "Добро пожаловать, Максон",
+          "description": "Выберите удобный для вас способ связи!",
+          "fullname": "Максим",
+          "category": "Пример: Консультант / дизайнер",
+          "url": "makskondratenko"
+        },
+        "messengers": [
+          {
+            "enabled": true,
+            "designation": "randomNameOfMessenger",
+            "keeping": "+380934587499",
+            "redirectUrl": "redirectUrl",
+            "type": "private"
+          }
+        ],
+        "links": [],
+        "design": {
+          "background": {
+            "color": "color",
+            "imageUrl": "",
+            "type": "#6D68CB"
+          },
+          "branding": true,
+          "photo": "bear_profile.png",
+          "photoUrl": "https://app.mssg.me/static/avatars/bear_profile.png"
+        },
+        "widget": {
+          "color": "#F8C76D",
+          "device": "all",
+          "position": "right"
+        },
+        "analytics": {
+          "facebook": "",
+          "google": "",
+          "yandex": ""
+        }
+      },
+      "account": {
+        "avatar": "4064522vjr7neiut.jpeg",
+        "avatarUrl": "https://mssg.me/upload/images/4064522vjr7neiut.jpeg",
+        "name": "Максим",
+        "email": "maks@mail.ru",
+        "password": "123123",
+        "lang": "ru",
+        "subscribe": true
+      },
       "id": 1
     }
   ],

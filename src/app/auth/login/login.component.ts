@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { UsersService } from 'src/app/shared/services/users.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ProfileCardService } from 'src/app/shared/services/profile-card.service';
 
 import { User } from 'src/app/shared/models/user.model';
 import { Message } from 'src/app/shared/models/message.model';
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
+    private profileCardService: ProfileCardService,
   ) { }
   
   ngOnInit() {
@@ -63,10 +65,15 @@ export class LoginComponent implements OnInit {
     this.usersService.getUserByEmail(formData.email).subscribe((user: User) => {
 
       if(user) {
-        if(user.password === formData.password) {
+        if(user.account.password === formData.password) {
           this.message.text = '';
-          window.localStorage.setItem('user', JSON.stringify(user));
+
+          window.localStorage.setItem('userId', JSON.stringify(user.id));
+
+          this.profileCardService.userOptions = user;
+
           this.authService.login();
+
           this.router.navigate(['/profile']);
         }
         else {

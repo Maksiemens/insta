@@ -1,7 +1,47 @@
-.mat-toolbar-row {
+.main {
+}
+
+.content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.logo {
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &__text {
+    text-transform: uppercase;
+  }
+
+  &__icon {
+
+  }
+  // display: block;
+  // width: 50px;
+  // height: 50px;
+  // background: url('images/logo.svg') no-repeat center center / cover;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__text {
+    
+  }
+
+  &__button {
+    margin-left: 15px;
+  }
 }
 
 .profile {

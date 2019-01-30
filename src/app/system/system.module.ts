@@ -6,6 +6,7 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { SystemComponent } from './system.component';
 
 import { SystemRoutingModule } from './system-routing.module';
+import { ProfileCardService } from '../shared/services/profile-card.service';
 
 
 @NgModule({
@@ -18,5 +19,8 @@ import { SystemRoutingModule } from './system-routing.module';
     SystemRoutingModule,
     SharedModule,  
   ],
+  providers: [
+    
+  ]
 })
 export class SystemModule { }

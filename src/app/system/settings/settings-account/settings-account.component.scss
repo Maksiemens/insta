@@ -1,0 +1,38 @@
+:host {
+  width: 100%;
+  max-width: 500px;
+}
+
+.settings-account {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .header {
+
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .form {
+    width: 100%;
+
+    &__group {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    &__actions {
+      margin: 20px 0 0 0;
+      width: 100%;
+    }
+
+    &__button {
+
+    }
+  }
+}
+

@@ -1,53 +1,83 @@
-<div class="profile">
-
+<div class="interface">
   <div class="head">
-    <a class="head__link" mat-flat-button color="warn" [routerLink]="['/profile']" >Отмена</a>   
+    <a
+      class="head__link"
+      mat-flat-button
+      color="warn"
+      [routerLink]="['/profile']"
+      (click)="cancelChanges()"
+      >Отмена
+    </a>
     <h2 class="head__title">Профиль</h2>
-    <button class="head__button" type="button" mat-flat-button color="accent">Сохранить</button>
+    <a
+      class="head__link"
+      mat-flat-button
+      color="accent"
+      [routerLink]="['/profile']"
+      (click)="saveChanges()"
+      >Сохранить
+    </a>
   </div>
 
-  <form class="form example-form">
+  <form class="form" (input)="getProfileText($event)">
     <mat-form-field class="form__group">
       <input
+        class="form__input"
         matInput
         placeholder="Приветствие"
-        value="Добро пожаловать"
-      >
+        [(ngModel)]="profileGreeting"
+        name="profileGreeting"
+      />
     </mat-form-field>
-  
+
     <mat-form-field class="form__group">
       <textarea
+        class="form__textarea"
         matInput
         placeholder="Описание"
-        value="Выберите удобный для вас способ связи!"
+        [(ngModel)]="profileDescription"
+        name="profileDescription"
       >
       </textarea>
     </mat-form-field>
 
     <mat-form-field class="form__group">
       <input
+        class="form__input"
         matInput
         placeholder="Полное имя"
-        value="Ваше имя"
-      >
+        [(ngModel)]="profileFullname"
+        name="profileFullname"
+      />
     </mat-form-field>
 
     <mat-form-field class="form__group">
       <input
+        class="form__input"
         matInput
         placeholder="Категория"
-        value="Пример: Консультант / дизайнер"
-      >
+        [(ngModel)]="profileCategory"
+        name="profileCategory"
+      />
     </mat-form-field>
 
     <mat-form-field class="form__group">
       <input
+        class="form__input"
         matInput
-        placeholder="Ссылка"
-        value="Ваша ссылка"
-      >
+        placeholder="Ваша ссылка"
+        [(ngModel)]="profileUrl"
+        name="profileUrl"
+      />
     </mat-form-field>
 
+    <!-- <div class="">
+      <div class="">
+        <span class="">insta.me/</span>
+      </div>
+      <mat-form-field class="form__group">
+        <input matInput placeholder="Ваша ссылка" />
+      </mat-form-field>
+    </div> -->
   </form>
-
 </div>

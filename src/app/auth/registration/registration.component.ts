@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, ValidationErrors } from '@angular/forms';
+import { 
+  FormControl,
+  Validators,
+  FormGroup,
+  ValidationErrors
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, debounceTime } from 'rxjs/operators';
 
 import { UsersService } from 'src/app/shared/services/users.service';
-
+import { ProfileCardService } from 'src/app/shared/services/profile-card.service';
 import { User } from 'src/app/shared/models/user.model';
-
-
-import { Observable, Observer, of, timer,  } from 'rxjs';
-import { map, switchMap, debounceTime,  distinctUntilChanged, first, take   } from 'rxjs/operators';
-
 
 
 @Component({
@@ -23,7 +25,9 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private profileCardService: ProfileCardService,
+
   ) { }
 
   ngOnInit() {
@@ -61,14 +65,56 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     const {email, password, name, page} = this.form.value;
-    const user = new User(email, password, name, page);
 
+    const profile = {      
+      interface: {
+        greeting: 'Добро пожаловать',
+        description: 'Выберите удобный для вас способ связи!',
+        fullname: name,
+        category: 'Пример: Консультант / дизайнер',
+        url: page,
+      },
+      messengers: [],
+      links: [],
+      design: {
+        background: {
+          color: 'color',
+          imageUrl: '',
+          type: '#2F3542',
+        },
+        branding: true,
+        photo: 'bear_profile.png',
+        photoUrl: 'https://app.mssg.me/static/avatars/bear_profile.png',
+      },
+      widget: {
+        color: '#F8C76D',
+        device: 'all',
+        position: 'right',
+      },
+      analytics: {
+        facebook: '',
+        google: '',
+        yandex: '',
+      },
+    };
+
+    const account = {
+      avatar: '4064522vjr7neiut.jpeg',
+      avatarUrl: 'https://mssg.me/upload/images/4064522vjr7neiut.jpeg',
+      name: name,
+      email: email,
+      password: password,
+      lang: 'ru',
+      subscribe: true,
+    };
+
+    const user = new User(profile, account);
+    
     this.usersService.createNewUser(user).subscribe((user: User) => {
-      this.router.navigate(['/login'], {
-        queryParams: {
-          nowCanLogin: true
-        }
-      });
+
+      // this.profileCardService.userOptions = user;
+
+      this.router.navigate(['/login'], { queryParams: { nowCanLogin: true } });
     });
   }
 
@@ -93,8 +139,6 @@ export class RegistrationComponent implements OnInit {
     return this.usersService.getUserByEmail(control.value)
       .pipe(
         debounceTime(500),
-        distinctUntilChanged(),
-        take(1),
         map((user: User) => user ? {forbiddenEmail: true} : null)
       );
 

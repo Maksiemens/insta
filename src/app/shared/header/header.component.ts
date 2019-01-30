@@ -1,30 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
 
-import { User } from 'src/app/shared/models/user.model';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from "src/app/shared/services/auth.service";
+
+import { ProfileCardService } from "../services/profile-card.service";
 
 
 @Component({
-  selector: 'insta-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: "insta-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
-  
-  user: User;
-
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) { }
+    private profileCardService: ProfileCardService
+  ) {}
 
   ngOnInit() {
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+
   }
 
   onLogout() {
     this.authService.logout();
   }
 
+  get user() {
+    return this.profileCardService.userOptions;
+  }
 }

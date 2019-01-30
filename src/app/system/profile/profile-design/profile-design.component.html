@@ -1,3 +1,227 @@
-<p>
-  profile-design works!
-</p>
+<div class="design">
+  <div class="head">
+    <a
+      class="head__link"
+      mat-flat-button
+      color="warn"
+      [routerLink]="['/profile']"
+      (click)="cancelChanges()"
+      >Отмена
+    </a>
+    <h2 class="head__title">Дизайн</h2>
+    <a
+      class="head__link"
+      mat-flat-button
+      color="accent"
+      [routerLink]="['/profile']"
+      (click)="saveChanges()"
+      >Сохранить
+    </a>
+  </div>
+
+  <form class="form">
+    <div class="profile-photo"></div>
+
+
+    <div class="profile-color">
+      <h4 class="profile-color__title">Цвет</h4>
+
+      <div
+        class="profile-color__group"
+        *ngFor="let colorItem of colors; let i = index"
+        (change)="doCheck($event)">
+        <label class="profile-color__label profile-color__label_color-i">
+          <input 
+            class="profile-color__input"
+            type="radio"
+            name="color"
+            [value]="colorItem"
+            [checked]="temp === i"
+          />
+          <svg
+            *ngIf="isSelected(color_i)"
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            xmlns="http://www.w3.org/2000/svg"
+            class="">
+              <path
+                d="M2.138 6.357a.65.65 0 0 0-.943 0 .711.711 0 0 0 0 .979l3.334 3.461c.26.27.682.27.942 0l7.334-7.615a.711.711 0 0 0 0-.98.65.65 0 0 0-.943 0L5 9.33 2.138 6.357z"
+                stroke="currentColor"
+                fill="currentColor">
+            </path>
+          </svg>
+        </label>
+      </div>
+     
+    </div>
+   
+
+
+
+
+
+
+
+
+    <div class="profile-background">
+      <h4 class="title">Фоновое изображение</h4>
+
+      <h4 class="title">Фото профиля</h4>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="profile-color">
+    <h4 class="profile-color__title">Цвет</h4>
+
+    <div class="profile-color__group" (change)="doCheck($event)">
+      <label class="profile-color__label profile-color__label_color-1">
+        <input 
+          class="profile-color__input"
+          type="radio"
+          name="color"
+          [value]="color_1"
+          [checked]="temp === index"
+        />
+        <svg
+          *ngIf="isSelected(color_1)"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="">
+            <path
+              d="M2.138 6.357a.65.65 0 0 0-.943 0 .711.711 0 0 0 0 .979l3.334 3.461c.26.27.682.27.942 0l7.334-7.615a.711.711 0 0 0 0-.98.65.65 0 0 0-.943 0L5 9.33 2.138 6.357z"
+              stroke="currentColor"
+              fill="currentColor">
+          </path>
+        </svg>
+      </label>
+
+      <label class="profile-color__label profile-color__label_color-2">
+        <input
+          class="profile-color__input"
+          type="radio"
+          name="color"
+          [value]="color_2"
+        />
+        <svg
+          *ngIf="isSelected(color_2)"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="">
+            <path
+              d="M2.138 6.357a.65.65 0 0 0-.943 0 .711.711 0 0 0 0 .979l3.334 3.461c.26.27.682.27.942 0l7.334-7.615a.711.711 0 0 0 0-.98.65.65 0 0 0-.943 0L5 9.33 2.138 6.357z"
+              stroke="currentColor"
+              fill="currentColor">
+          </path>
+        </svg>
+      </label>
+
+      <label class="profile-color__label profile-color__label_color-3">
+        <input
+          class="profile-color__input"
+          type="radio"
+          name="color"
+          [value]="color_3"
+        />
+        <svg
+          *ngIf="isSelected(color_3)"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="">
+          <path
+            d="M2.138 6.357a.65.65 0 0 0-.943 0 .711.711 0 0 0 0 .979l3.334 3.461c.26.27.682.27.942 0l7.334-7.615a.711.711 0 0 0 0-.98.65.65 0 0 0-.943 0L5 9.33 2.138 6.357z"
+            stroke="currentColor"
+            fill="currentColor">
+          </path>
+        </svg>
+      </label>
+
+      <label class="profile-color__label profile-color__label_color-4">
+        <input
+          class="profile-color__input"
+          type="radio"
+          name="color"
+          [value]="color_4"
+        />
+        <svg
+          *ngIf="isSelected(color_4)"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="">
+          <path
+            d="M2.138 6.357a.65.65 0 0 0-.943 0 .711.711 0 0 0 0 .979l3.334 3.461c.26.27.682.27.942 0l7.334-7.615a.711.711 0 0 0 0-.98.65.65 0 0 0-.943 0L5 9.33 2.138 6.357z"
+            stroke="currentColor"
+            fill="currentColor">
+          </path>
+        </svg>
+      </label>
+
+      <label class="profile-color__label profile-color__label_color-5">
+        <input
+          class="profile-color__input"
+          type="radio"
+          name="color"
+          [value]="color_5"
+        />
+        <svg
+          *ngIf="isSelected(color_5)"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="">
+          <path
+            d="M2.138 6.357a.65.65 0 0 0-.943 0 .711.711 0 0 0 0 .979l3.334 3.461c.26.27.682.27.942 0l7.334-7.615a.711.711 0 0 0 0-.98.65.65 0 0 0-.943 0L5 9.33 2.138 6.357z"
+            stroke="currentColor"
+            fill="currentColor">
+          </path>
+        </svg>
+      </label>
+
+      <label class="profile-color__label profile-color__label_color-6">
+        <input
+          class="profile-color__input"
+          type="radio"
+          name="color"
+          [value]="color_6"
+        />
+        <svg
+          *ngIf="isSelected(color_6)"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="">
+          <path
+            d="M2.138 6.357a.65.65 0 0 0-.943 0 .711.711 0 0 0 0 .979l3.334 3.461c.26.27.682.27.942 0l7.334-7.615a.711.711 0 0 0 0-.98.65.65 0 0 0-.943 0L5 9.33 2.138 6.357z"
+            stroke="currentColor"
+            fill="currentColor">
+          </path>
+        </svg>
+      </label>
+
+      <span class="profile-color__rainbow"></span>
+    </div>
+  </div> -->

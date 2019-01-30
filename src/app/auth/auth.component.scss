@@ -1,13 +1,28 @@
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // background-image: linear-gradient(to top, rgba(#074682, 0.89) 0%, rgba(#1985e0, 0.89) 100%);
-  width: 100%;
-  height: 100%;
-  background-color: rgba(#000, 0.85);
+@import 'src/styles/mixins';
+
+
+.main {
+
 }
 
-.example-spacer {
-  flex: 1 1 auto;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__link {
+
+    &_logo {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background-color: rgba(#000, 0.85);  
 }

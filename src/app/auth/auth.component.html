@@ -1,25 +1,31 @@
-<mat-toolbar color="primary">
-
-  <mat-toolbar-row>
-    <a [routerLink]=" '/' " class="logo">Insta App</a>
-
-    <span class="example-spacer"></span>
-
-    <a 
-      mat-raised-button
-      *ngIf="router.url === '/login' || router.url === '/recovery'" 
-      [routerLink]=" '/registration' "
-    >Зарегистрироваться</a>
+<mat-toolbar class="main" color="primary">
+  <mat-toolbar-row class="header">
+    <a
+      class="header__link header__link_logo"
+      mat-button
+      [routerLink]="'/'"
+    >
+      Insta App
+    </a>
 
     <a
+      class="header__link"
+      mat-raised-button
+      *ngIf="router.url === '/login' || router.url === '/recovery'"
+      [routerLink]="'/registration'"
+      >Зарегистрироваться</a
+    >
+
+    <a
+      class="header__link"
       mat-raised-button
       *ngIf="router.url === '/registration'"
-      [routerLink]=" '/login' "
-    >Войти</a>
+      [routerLink]="'/login'"
+      >Войти</a
+    >
   </mat-toolbar-row>
-
 </mat-toolbar>
 
-<div class="content"> 
+<div class="content">
   <router-outlet></router-outlet>
 </div>

@@ -5,24 +5,16 @@ import { MaterialModule } from './material/material.module';
 
 
 @NgModule({
-  declarations: [
-
-  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
     MaterialModule,
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
-
     MaterialModule,
-  ],
-  providers:[
-    
   ],
 })
 export class SharedModule { }

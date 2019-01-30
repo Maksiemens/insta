@@ -1,53 +1,35 @@
 <mat-card class="card">
 
-  <mat-card-header class="header">
+  <mat-card-header class="header" [ngStyle]="{'background': user.profile.design.background.type }">
     <mat-card-title>
-      <h2 class="header__title ngmodel">Добро пожаловать</h2>
+      <h2 class="header__title" >{{ user.profile.interface.greeting }}</h2>
     </mat-card-title>
     <mat-card-subtitle>
       <p class="header__subtitle ngmodel">
-        Выберите удобный для вас способ связи!        
+        {{ user.profile.interface.description }}      
       </p>
     </mat-card-subtitle>
   </mat-card-header>
- 
 
   <mat-card-content class="content">
 
     <div class="profile">
 
       <div class="avatar">
-        <img class="avatar__image" src="https://app.mssg.me/static/avatars/bear_profile.png" alt="My photo">
-        <span class="avatar__text">makskondratenko</span>
+        <div class="avatar__header">
+          <img class="avatar__image" src="https://app.mssg.me/static/avatars/bear_profile.png" alt="My photo">
+        </div>
+        <div class="avatar__content">
+          <h2 class="avatar__title">{{ user.profile.interface.fullname }}</h2>
+          <p class="avatar__text">{{ user.profile.interface.category }}</p>
+        </div>
       </div>
 
-      <ul class="social">
-        <li class="social__item">
-          <a class="social__link" href="#">makskondratenko</a>
-        </li>
-
-        <li class="social__item">
-          <a class="social__link" href="#">makskondratenko</a>
-        </li>
-
-        <li class="social__item">
-          <a class="social__link" href="#">makskondratenko</a>
-        </li>
-
-        <li class="social__item">
-          <a class="social__link" href="#">makskondratenko</a>
-        </li>
-
-        <li class="social__item">
-          <a class="social__link" href="#">makskondratenko</a>
-        </li>
-
-        <li class="social__item">
-          <a class="social__link" href="#">makskondratenko</a>
-        </li>
-
-        <li class="social__item">
-          <a class="social__link" href="#">makskondratenko</a>
+      <ul class="social" >
+        <li class="social__item" *ngFor="let messenger of user.profile.messengers">
+          <a class="social__link" href="#">            
+            {{ messenger.keeping }}
+          </a>
         </li>
       </ul>
 

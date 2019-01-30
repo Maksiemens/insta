@@ -1,1 +1,127 @@
-<p>Account work</p>
+<mat-card class="settings-account">
+
+  <mat-card-content class="content">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="avatar">
+
+        <input class="avatar__input" type="file">
+
+        <button mat-raised-button class="avatar__button" type="button" color="primary">Загрузить аватар</button>
+
+      </div>
+   
+      <mat-form-field class="form__group">
+        <input
+          type="text"
+          required
+          matInput
+          placeholder="Ваше имя"
+          formControlName="name"
+        >
+        <mat-error *ngIf="form.get('name').hasError('required')">
+          Имя не может быть <strong>пустым</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__group">
+        <input
+          type="email"
+          required
+          matInput
+          placeholder="Ваш email"
+          formControlName="email"
+        >
+        <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+          Введите корректный email
+        </mat-error>
+        <mat-error *ngIf="form.get('email').hasError('required')">
+          Email не может быть <strong>пустым</strong>
+        </mat-error>
+        <mat-error *ngIf="form.get('email').hasError('forbiddenEmail')">
+          Email уже <strong>занят</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__group">
+        <mat-select placeholder="Язык">
+          <mat-option *ngFor="let language of languages" [value]="language.value">
+            {{language.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form__group">
+        <input
+          type="password"
+          required
+          matInput
+          placeholder="Введите новый пароль"
+          formControlName="password"      
+        >
+        <mat-error *ngIf="form.get('password').hasError('minlength') && !form.get('password').hasError('required')">
+          Пароль должен быть больше
+          {{ form.get('password')['errors']['minlength']['requiredLength'] }}
+          символов.
+          Сейчас
+          {{ form.get('password')['errors']['minlength']['actualLength'] }}
+        </mat-error>
+        <mat-error *ngIf="form.get('password').hasError('required')">
+          Пароль не может быть <strong>пустым</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__group">
+        <input
+          type="password"
+          required
+          matInput
+          placeholder="Повторите новый пароль"
+          formControlName="password"      
+        >
+        <mat-error *ngIf="form.get('password').hasError('minlength') && !form.get('password').hasError('required')">
+          Пароль должен быть больше
+          {{ form.get('password')['errors']['minlength']['requiredLength'] }}
+          символов.
+          Сейчас
+          {{ form.get('password')['errors']['minlength']['actualLength'] }}
+        </mat-error>
+        <mat-error *ngIf="form.get('password').hasError('required')">
+          Пароль не может быть <strong>пустым</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form__group c">
+        <mat-checkbox
+          class="form__checkbox"
+          formControlName="agree"
+        >
+          Подписка на новые функции и обновления insta.app
+        </mat-checkbox>
+      </div>
+
+      <mat-card-actions class="form__actions">
+        <button
+          class="form__button"
+          type="button"
+          color="primary"
+          mat-raised-button
+          [disabled]="form.invalid"
+        >
+          Отмена
+        </button>
+
+        <button
+          class="form__button"
+          type="button"
+          color="primary"
+          mat-raised-button
+          [disabled]="form.invalid"
+        >
+          Сохранить
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+
+</mat-card>

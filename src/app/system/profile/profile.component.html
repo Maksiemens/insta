@@ -1,10 +1,17 @@
 <mat-drawer-container class="main">
+
   <mat-drawer class="sidebar" mode="side" opened>
-    <insta-sidebar *ngIf="router.url === '/profile'"></insta-sidebar>
+
+    <insta-profile-sidebar *ngIf="router.url === '/profile'"></insta-profile-sidebar>
+    
     <router-outlet></router-outlet>
+
   </mat-drawer>
   
   <mat-drawer-content class="content">
+
     <insta-card></insta-card>
+
   </mat-drawer-content>
+
 </mat-drawer-container>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'insta-settings',
   templateUrl: './settings.component.html',

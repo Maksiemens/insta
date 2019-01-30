@@ -1,0 +1,25 @@
+@import 'src/styles/mixins';
+
+.analytics {
+  padding: 25px;
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000;
+    padding: 0 0 15px 0;
+
+    &__title {
+      @include font-primary(16px, #000, 500);
+    }
+
+    &__text {
+
+    }
+  }
+
+  .body {
+
+  }
+}

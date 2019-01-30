@@ -1,0 +1,23 @@
+@import 'src/styles/mixins';
+
+
+.messenger {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
+
+  &__text {
+    @include font-primary(16px, #000, 500);
+  }
+
+  .delete {
+
+    &__button {
+      
+    }
+  }
+}

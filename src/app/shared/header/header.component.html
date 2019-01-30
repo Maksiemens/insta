@@ -1,29 +1,39 @@
-<mat-toolbar class="mat-toolbar" color="primary">
-  <mat-toolbar-row class="mat-toolbar-row">
-    <span class="application">Insta</span>
-    
-    <div class="page-link">
-      <span class="">Ваша ссылка: insta/{{ user.page }}</span>
+<mat-toolbar class="mat-toolbar main" color="primary">
+
+  <mat-toolbar-row class="content">
+    <div class="logo">
+      <a class="logo__link" [routerLink]="['/profile']">
+        <span class="logo__text">Logo</span>
+        <mat-icon class="logo__icon">chat_bubble_outline</mat-icon>
+      </a>
+    </div>
+
+    <div class="info">
+      <span class="info__text">Ваша ссылка: insta/{{ user.profile.interface.url }}</span>
+      <button class="info__button" mat-raised-button>Поделиться</button>
     </div>
 
     <div class="profile">
-      <span class="name">Привет, {{ user.name }}</span>
+      <span class="name">Привет, {{ user.profile.interface.fullname }}</span>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-
-        <a mat-menu-item [routerLink]="['/settings']">
+      <mat-menu class="menu" #menu="matMenu">
+        <a class="menu__link" mat-menu-item [routerLink]="['/settings']">
           <mat-icon>settings</mat-icon>
           <span>Общие настройки</span>
         </a>
-
-        <a mat-menu-item [routerLink]="['/login']" (click)="onLogout()">
+        <a
+          class="menu__link"
+          mat-menu-item
+          [routerLink]="['/login']"
+          (click)="onLogout()"
+        >
           <mat-icon>exit_to_app</mat-icon>
           <span>Выйти</span>
         </a>
       </mat-menu>
     </div>
-    
+
   </mat-toolbar-row>
 </mat-toolbar>

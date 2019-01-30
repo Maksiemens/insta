@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { SettingsRoutingModule } from './settings-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { SettingsComponent } from './settings.component';
-import { SettingsRoutingModule } from './settings-routing.module';
-import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SettingsAccountComponent } from './settings-account/settings-account.component';
 import { SettingsBillingComponent } from './settings-billing/settings-billing.component';
-
+import { SettingsSidebarComponent } from 'src/app/shared/settings-sidebar/settings-sidebar.component';
 
 
 @NgModule({
@@ -15,13 +14,13 @@ import { SettingsBillingComponent } from './settings-billing/settings-billing.co
     SettingsComponent,
     SettingsAccountComponent,
     SettingsBillingComponent,
+    SettingsSidebarComponent,
+
   ],
   imports: [
     CommonModule,
     SettingsRoutingModule,
-
-
-    MaterialModule,
+    SharedModule,
   ]
 })
 export class SettingsModule { }

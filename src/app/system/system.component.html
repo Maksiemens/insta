@@ -1,8 +1,13 @@
-<insta-header></insta-header>
-<router-outlet></router-outlet>
+<div class="system" *ngIf="user; else loader">
+  <insta-header></insta-header>
+  <router-outlet></router-outlet>
+</div>
 
-
-
+<ng-template #loader>
+  <div class="loader">
+    <mat-spinner class="loader__spinner"></mat-spinner>
+  </div>
+</ng-template> 
 
 
 

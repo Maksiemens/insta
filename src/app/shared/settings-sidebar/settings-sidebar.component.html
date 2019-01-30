@@ -1,0 +1,21 @@
+<div class="settings-sidebar">
+  <h2 class="settings-sidebar__title">Основные настройки</h2>
+
+  <mat-list class="settings-sidebar__list">
+    <mat-list-item>
+      <a mat-button [routerLink]="['/settings', 'account']">Аккаунт</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <a mat-button [routerLink]="['/settings', 'billing']">Тарифные планы</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <a mat-button [routerLink]="['/settings', 'referral']">Партнерский кабинет</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+  </mat-list>
+</div>

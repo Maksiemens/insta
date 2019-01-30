@@ -1,4 +1,6 @@
-.profile {
+@import 'src/styles/mixins';
+
+.interface {
   padding: 25px;
 
   .head {
@@ -13,9 +15,7 @@
     }
 
     &__title {
-      font-family: Roboto,"Helvetica Neue",sans-serif;
-      font-size: 16px;
-      font-weight: 500;
+      @include font-primary(16px, #000, 500);
     }
 
     &__button {

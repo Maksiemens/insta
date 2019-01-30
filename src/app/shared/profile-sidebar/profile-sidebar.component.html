@@ -1,0 +1,94 @@
+<div class="basic-settings">
+  <h2 class="basic-settings__title">Основные настройки</h2>
+  <mat-list class="basic-settings__list">
+    <mat-list-item>
+      <a mat-button [routerLink]="['/profile', 'interface']">Профиль</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <a mat-button [routerLink]="['/profile', 'messengers']">Мессенджеры</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <a mat-button [routerLink]="['/profile', 'links']">Ссылки</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <a mat-button [routerLink]="['/profile', 'design']">Дизайн</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    
+  </mat-list>
+</div>
+
+<div class="additional-settings">
+  <h2 class="additional-settings__title">Дополнительные настройки</h2>     
+  <mat-list class="additional-settings__list">
+    <mat-list-item>
+      <a mat-button [routerLink]="['/profile', 'widget']">Виджет</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <a mat-button [routerLink]="['/profile', 'analytics']">Аналитика</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</div>
+  
+
+
+
+<!-- //Пример с акордином, оставил на всякий случай  -->
+<!--<div class="basic-settings">
+  <h2 class="basic-settings__title">Основные настройки</h2>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="mat-expansion-panel-header">
+        <mat-panel-title class="mat-panel-title">
+          <button class="button cancel" type="button" mat-flat-button color="warn">Отмена</button>
+          <h2 class="title">Профиль</h2>
+          <button class="button cancel" type="button" mat-flat-button color="accent">Сохранить</button>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="mat-expansion-panel-header">
+        <mat-panel-title class="mat-panel-title">
+          <button class="button cancel" type="button" mat-flat-button color="warn">Отмена</button>
+          <h2 class="title">Профиль</h2>
+          <button class="button cancel" type="button" mat-flat-button color="accent">Сохранить</button>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+    
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header class="mat-expansion-panel-header">
+      <mat-panel-title class="mat-panel-title">
+        <h2 class="title">Основные настройки</h2>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="profile">
+          <button class="button cancel" type="button" mat-flat-button color="warn">Отмена</button>
+          <button class="button cancel" type="button" mat-flat-button color="warn">Отмена</button>
+        <mat-panel-title>Профиль</mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Дополнительные настройки</mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion> -->
